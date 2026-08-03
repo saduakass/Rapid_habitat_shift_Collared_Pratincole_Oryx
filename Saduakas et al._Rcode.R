@@ -140,10 +140,7 @@ fit_model <- function(...) {
 # ---------------------------------------------------------------------------
 # STEP 1. Read the colony records
 # ---------------------------------------------------------------------------
-raw_data <- read_excel(
-  "~/Desktop/Pratincole project/Saduakas et al., 2026_Data_ÁK.xlsx",
-  sheet = "Sheet1"
-)
+raw_data <- read_excel("Saduakas et al._Data1.xlsx",sheet = "Sheet1")
 names(raw_data) <- trimws(names(raw_data))          # some headers have stray spaces
 raw_data$Annual_colony_size_mean <- as.numeric(raw_data$Annual_colony_size_mean)
 raw_data$grazing_intensity       <- as.numeric(raw_data$grazing_intensity)
@@ -349,7 +346,7 @@ tab1 <- bind_rows(format_for_table(res_colony_trend),
 # STEP 1. Load the regional livestock counts
 # ---------------------------------------------------------------------------
 # One row per year. Some early years have no pig record; treat those as zero.
-livestock <- read_csv("Desktop/Pratincole project/Hortobagy_livestock_1977_2009.csv") %>%
+livestock <- read_csv("Saduakas et al._Data2.csv") %>%
   filter(Year <= 2005) %>%
   mutate(Pig = ifelse(is.na(Pig), 0, Pig))
 
@@ -638,7 +635,7 @@ print(res_grazing_pairs)
 #   habitat, and did the breeding pairs follow?
 #
 # WHY BETA-BINOMIAL FOR 4a
-#   Habitat type never changes within a colony (0 of 95), so the same
+#   Habitat type never changes within a colony (0 of 35), so the same
 #   separation problem as Module 3 applies and we again aggregate to the year.
 #   The yearly proportions also scatter more than a plain binomial allows
 #   (Pearson dispersion ~4), so beta-binomial adds the needed flexibility.
